@@ -127,7 +127,6 @@ class PosOrderPaymentReport(models.Model):
                 ps.config_id,
                 pt.pos_categ_id,
                 s.pricelist_id,
-                pc.sucursal,
                 s.session_id,
                 s.invoice_id IS NOT NULL AS invoiced,
                 st.journal_id AS payment_journal_id,
