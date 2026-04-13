@@ -158,6 +158,11 @@ class PosOrderPaymentReport(models.Model):
     def _having(self):
         return ""
 
+    @api.model
+    def _search(self, args, offset=0, limit=None, order=None, count=False, access_rights_uid=None):
+        company_domain = [('company_id', 'in', self.env.companies.ids)]
+        args = company_domain + (list(args) if args else [])
+        return super()._search(args, offset=offset, limit=limit, order=order, count=count, access_rights_uid=access_rights_uid)
 
     def init(self):
         tools.drop_view_if_exists(self._cr, self._table)
